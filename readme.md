@@ -1,5 +1,4 @@
 *Training Connection*
 
-
-class - tc5774
-instructor - Chris
+* class - tc5774
+* instructor - Chris
