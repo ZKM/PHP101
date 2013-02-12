@@ -7,3 +7,6 @@ one-to-one - foreign  key goes in "secondary" table
 one-to-many - foreign key goes in "Many" table
 many-to-many - use a link TABLE
 
+only 2 tables per link table
+
+http://en.wikipedia.org/wiki/Database_normalization
