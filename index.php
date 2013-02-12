@@ -8,7 +8,7 @@ $thelist = "";
 
  if ($handle = opendir('.')) {
 	while (false !== ($file = readdir($handle))) {
-		if ($file != "." && $file != ".." && $file != "index.php" && $file != ".htaccess") {
+		if ($file != "." && $file != ".." && $file != "index.php" && $file != ".htaccess" && $file != ".git" && $file != ".DS_Store") {
 			$thelist .= '<li><a href="'.$file.'" target="_blank">'.$file.'</a></li>';
 		}
 	}
