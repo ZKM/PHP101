@@ -30,17 +30,45 @@
 
 		default:
 		case 'DISPLAY': // display photos
+	
+		$urlpath = 'http://localhost/PHP101/day3/img/';
+		
 		// get list of photos
-		$query = 'SELECT id, filepath FROM photos';
-		$images = @mysql_query($query);
+		$query = "SELECT \n"
+			. "	photos.id AS photo_id, \n"
+			. " photos.title, photos.caption, \n"
+			. " photos.filepath, \n"
+			. " albums.title AS albumname \n"
+			. "FROM photos\n"
+			. "LEFT JOIN p2a ON photos.id = p2a.photo_id\n"
+			. "LEFT JOIN albums ON p2a.album_id = albums.id";
 
-		if (!$images) {
+			$photoSet = @mysql_query($query);
+		
+		if (!$photoSet) {
 			echo "<p><strong>Query error:</strong><br /> $query</p>"; // query error
+			break; // terminate case
 		}
 
-		while($row = mysql_fetch_array($images)) {
-				echo '<img src="' . $row['filepath'] . '" alt="" /><br />';
-			}
+		if (mysql_num_rows($photoSet) < 1) {
+			echo '<p>No photos available';
+			break; // terminate case
+		}
+
+		// loop through
+		while($photo = mysql_fetch_array($photoSet, MYSQL_BOTH)) {
+		
+		?>
+			<div id="photo_<?php echo $photo['photo_id']; ?>" class="photoitem">
+				<h2><?php echo $photo['title']; ?></h2>
+				<img src="<?php echo $urlpath . basename($photo['filepath']); ?>" alt="<?php echo $photo['title']; ?>" />
+				<p class="caption_n"><?php echo $photo['caption']; ?></p>
+				<p class="album_n">Album Name: <?php echo $photo['albumname']; ?></p>
+			</div>
+		
+		<?php
+		
+		} // while photos
 		
 		break;
 		
