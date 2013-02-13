@@ -27,8 +27,8 @@
 		// process form data
 				
 		// build query
-		$title = $_POST['title'];
-		$description = $_POST['description'];
+		$title = mysql_real_escape_string($_POST['title']);
+		$description = mysql_real_escape_string($_POST['description']);
 		
 		$query = 'INSERT INTO albums SET ' . 
 					"title = '$title', " .

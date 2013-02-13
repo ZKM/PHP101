@@ -42,10 +42,10 @@
 				echo '<p>The file has been uploaded successfully.</p>';
 				
 				// save file location and other posted info to database
-				$title = $_POST['title'];
-				$caption = $_POST['caption'];
-				$album_id = $_POST['albumid'];
-				$filepath = $pathname;
+				$title = mysql_real_escape_string($_POST['title']);
+				$caption = mysql_real_escape_string($_POST['caption']);
+				$album_id = mysql_real_escape_string($_POST['albumid']);
+				$filepath = mysql_real_escape_string($pathname);
 				
 					$query = 'INSERT INTO photos SET ' .
 							"title = '$title', " .
