@@ -30,10 +30,28 @@
 
 		default:
 		case 'DISPLAY': // display photos
+		// get list of photos
+		$query = 'SELECT id, filepath FROM photos';
+		$images = @mysql_query($query);
+
+		if (!$images) {
+			echo "<p><strong>Query error:</strong><br /> $query</p>"; // query error
+		}
+
+		while($row = mysql_fetch_array($images)) {
+				echo '<img src="' . $row['filepath'] . '" alt="" /><br />';
+			}
 		
 		break;
 		
 		case 'PROCESS': //process file upload
+		
+		// following lines added for troubleshooting discussion 
+			echo '<pre>' . print_r($_FILES,  true) . '</pre>';
+			echo '<pre>' . print_r($_SERVER,  true) . '</pre>';
+			echo '<pre>' . print_r($_POST,  true) . '</pre>';
+		// end trouble
+		
 			$uploaddir = '/xampp/htdocs/PHP101/day3/img/'; // define upload directory path
 			$pathname = $uploaddir . basename($_FILES['photo']['name']); // set server pathname for file
 			
