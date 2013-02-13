@@ -25,8 +25,7 @@
 	// is form data present?
 	if (!empty($_POST)) {
 		// process form data
-		
-		
+				
 		// build query
 		$title = $_POST['title'];
 		$description = $_POST['description'];
@@ -49,8 +48,6 @@
 		
 		// process results if any
 		
-		
-		echo "thank you have a nice day!";
 	} else {
 		//display blank form
 	?>
